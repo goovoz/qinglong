@@ -11,7 +11,7 @@ jobs:
       - name: Run Deploy
        
         run: |
-          sudo docker -dit \
+          sudo docker run \
            -v $PWD/ql:/ql/data \
            -p 5700:5700 \
            --env TENCENT_SECRET_ID="${{ secrets.TENCENT_SECRET_ID }}" \
