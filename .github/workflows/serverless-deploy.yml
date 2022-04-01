@@ -1,5 +1,4 @@
 name: serverless-deploy
-
 on:
   workflow_dispatch:
   watch:
