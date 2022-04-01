@@ -1,0 +1,21 @@
+name: serverless-deploy
+
+on:
+  workflow_dispatch: # 手动触发
+
+jobs:
+  deploy-bilibili-tool:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Deploy
+       
+        run: |
+          sudo docker -dit \
+           -v $PWD/ql:/ql/data \
+           -p 5700:5700 \
+           --env TENCENT_SECRET_ID="${{ secrets.TENCENT_SECRET_ID }}" \
+           --env TENCENT_SECRET_KEY="${{ secrets.TENCENT_SECRET_KEY }}" \
+           --name qinglong \
+           --hostname qinglong \
+           --restart always \
+           whyour/qinglong:latest
