@@ -1,0 +1,28 @@
+#组件信息
+component: scf
+name: qinglong
+
+#组件参数配置
+inputs:
+  name: ${name}_scf
+  namespace: default
+  src: ./bin/publish/
+  handler: index.main_handler
+  runtime: CustomRuntime
+  region: ap-shanghai
+  description: This is a function in ${app} application.
+  memorySize: 1024
+  timeout: 1200
+  asyncRunEnable: true
+  traceEnable: true
+  events:
+    - timer: # 定时触发器
+        parameters:
+          name: api
+          cronExpression: "0 45 * * * * *"
+          enable: true    
+  environment:
+    variables:
+      TENCENT_SECRET_ID: ${env:TENCENT_SECRET_ID}
+      TENCENT_SECRET_KEY: ${env:TENCENT_SECRET_KEY}
+  # For more information: https://github.com/serverless-components/tencent-scf/blob/master/docs/configure.md
